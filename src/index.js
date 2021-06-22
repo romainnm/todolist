@@ -23,17 +23,26 @@ const todolists = [];
 
 /* Project Factory: construct new projects */
 const project = (name, id) => {
-  return {name, id}
+  const editProject = () => {}
+  const deleteProject = () => {}
+  
+  return {name, id, editProject, deleteProject}
 } 
 
 /* Todolist Factory: construct a new todolist */
 const todolist = (name, id) => {
-  return {name, id}
+  const editTodolist = () => {}
+  const deleteTodolist = () => {}
+  
+  return {name, id, editTodolist, deleteTodolist}
 }
 
 /* Todolist Task Factory: construct a new todolist task */
 const todolistTask = (name, description, dueDate, priority) => {
-  return {name, description, dueDate, priority}
+  const editTodolistTask = () => {}
+  const deleteTodolistTask = () => {}
+  
+  return {name, description, dueDate, priority, editTodolistTask, deleteTodolistTask}
 }
 
 /* App Logic / Controller */
