@@ -2,6 +2,7 @@ import '../dist/css/styles.css'
 
 /* DOM manipulation */
 const addProject = document.querySelector('.add-project');
+const addProjectInput = document.querySelector('.add-project__input');
 
 /* Storage for all projects / todolists */
 const projects = [];
@@ -36,6 +37,7 @@ const todolistTask = (name, description, dueDate, priority) => {
 }
 
 /* App Logic / Controller */
-addProject.addEventListener('submit', () => {
-  
+addProject.addEventListener('submit', (e) => {
+  e.preventDefault();
+  console.log(addProjectInput.value);
 })
