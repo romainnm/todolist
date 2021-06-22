@@ -40,5 +40,6 @@ const todolistTask = (name, description, dueDate, priority) => {
 addProject.addEventListener('submit', (e) => {
   e.preventDefault();
   console.log(addProjectInput.value);
-  projects.push(addProjectInput.value);
+  const newProject = (addProjectInput.value, addProjectInput.value);
+  projects.push(newProject);
 })
