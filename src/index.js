@@ -1,9 +1,11 @@
 import '../dist/css/styles.css'
 
+/* DOM manipulation */
+const addProject = document.querySelector('.add-project');
+
 /* Storage for all projects / todolists */
 const projects = [];
 const todolists = [];
-
 
 /*[{
   name: project1,
@@ -32,3 +34,8 @@ const todolist = (name, id) => {
 const todolistTask = (name, description, dueDate, priority) => {
   return {name, description, dueDate, priority}
 }
+
+/* App Logic / Controller */
+addProject.addEventListener('submit', () => {
+  
+})
