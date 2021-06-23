@@ -1,24 +1,26 @@
 import '../dist/css/styles.css'
 
 /* DOM manipulation */
-const addProject = document.querySelector('.add-project');
-const addProjectInput = document.querySelector('.add-project__input');
+const addProject = document.querySelector('.add-project-js');
+const addProjectInput = document.querySelector('.add-project__input-js');
+const displayProjects = document.querySelector('.projects-js');
 
 /* Storage for all projects / todolists */
-const projects = [];
+let projectId = 0;
+
+const projects = [
+  {
+    name: 'Groceries',
+    id: 'p1',
+  }, 
+  {
+    name: 'Places to visit',
+    id: 'p2',
+  }
+];
 const todolists = [];
 
-/*[{
-  name: project1,
-  id: p1
-  }, 
- {
-  name: project2,
-  id: p2
-  }, {
-  name: project3,
-  id: p3
- }]
+/*
 */
 
 /* Project Factory: construct new projects */
@@ -46,9 +48,43 @@ const todolistTask = (name, description, dueDate, priority) => {
 }
 
 /* App Logic / Controller */
+renderProjects();
+
 addProject.addEventListener('submit', (e) => {
   e.preventDefault();
-  console.log(addProjectInput.value);
-  const newProject = (addProjectInput.value, addProjectInput.value);
+  /* Clean the display before re-rendering */
+  resetProjectsDisplay();
+  /* On Submit, create a new project*/
+  const newProject = project(addProjectInput.value, projectId);
+  /* Increment ID number */
+  projectId += 1;
+  /* Add & Render projects */
   projects.push(newProject);
+  renderProjects() 
+  resetProjectInput();
 })
+
+function renderProjects() {
+  for(let i = 0; i < projects.length; i++){
+    createNewProject(projects[i].name);
+  } 
+}
+
+function createNewProject(newProject) {
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  a.href = 'javascript:void(0)';
+  a.innerHTML = newProject;
+  li.appendChild(a);
+  displayProjects.appendChild(li);
+}
+
+function resetProjectInput() {
+  addProjectInput.value = '';
+}
+
+function resetProjectsDisplay() {
+  while (displayProjects.firstChild) {
+    displayProjects.removeChild(displayProjects.lastChild)
+  }
+}

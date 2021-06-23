@@ -28,14 +28,16 @@ nav {
     border-right: 1px solid #e3e3e3;
     grid-area: sidebar;
     padding: 20px 0 0 20px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: .85em;
 }
 
 #main {
     background-color: rgb(255, 255, 255);
     grid-area: main;
     padding: 30px 0 0 30px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 
 .logo {
@@ -62,4 +64,10 @@ nav {
 .fa-cog {
     color: white;
     padding: 0 20px 0 0;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 1rem;
 }
