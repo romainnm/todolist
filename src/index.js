@@ -73,9 +73,12 @@ addProject.addEventListener('submit', (e) => {
 })
 
 projectLinks.forEach(projectLink => 
-  projectLink.addEventListener('click', (e) => {
-    todolistTitleJs.innerText = e.target.innerHTML; 
-    console.log(e.target.dataset.id)   
+  projectLink.addEventListener('click', (e) => { 
+    projects.forEach(project => {
+      if(project.id == e.target.dataset.id){
+        todolistTitleJs.innerText = project.name;
+      }
+    })
   })
 )
 
