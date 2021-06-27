@@ -69,18 +69,22 @@ addProject.addEventListener('submit', (e) => {
   // Class project-link is created/updated in renderProjects() => update the DOM again here
   projectLinks = document.querySelectorAll('.project-link');
   // The project link listener needs to be called in order to have access to the updated DOM
-  return projectLinks
+  projectLinksListener()
 })
 
-projectLinks.forEach(projectLink => 
-  projectLink.addEventListener('click', (e) => { 
-    projects.forEach(project => {
-      if(project.id == e.target.dataset.id){
-        todolistTitleJs.innerText = project.name;
-      }
+projectLinksListener()
+
+function projectLinksListener(){
+  projectLinks.forEach(projectLink => 
+    projectLink.addEventListener('click', (e) => { 
+      projects.forEach(project => {
+        if(project.id == e.target.dataset.id){
+          todolistTitleJs.innerText = project.name;
+        }
+      })
     })
-  })
-)
+  )
+}
 
 function renderProjects() {
   let idToAssign = '';
