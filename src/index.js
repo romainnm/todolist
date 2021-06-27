@@ -4,18 +4,21 @@ import '../dist/css/styles.css'
 const addProject = document.querySelector('.add-project-js');
 const addProjectInput = document.querySelector('.add-project__input-js');
 const displayProjects = document.querySelector('.projects-js');
+const todolistTitleJs = document.querySelector('.todolist-title-js');
 
 /* Storage for all projects / todolists */
-let projectId = 0;
+let projectId = 2;
 
 const projects = [
   {
     name: 'Groceries',
-    id: 'p1',
+    id: 0,
+    todolists: [],
   }, 
   {
     name: 'Places to visit',
-    id: 'p2',
+    id: 1,
+    todolists: [],
   }
 ];
 const todolists = [];
@@ -49,6 +52,7 @@ const todolistTask = (name, description, dueDate, priority) => {
 
 /* App Logic / Controller */
 renderProjects();
+let projectLinks = document.querySelectorAll('.project-link');
 
 addProject.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -56,25 +60,44 @@ addProject.addEventListener('submit', (e) => {
   resetProjectsDisplay();
   /* On Submit, create a new project*/
   const newProject = project(addProjectInput.value, projectId);
-  /* Increment ID number */
-  projectId += 1;
   /* Add & Render projects */
   projects.push(newProject);
   renderProjects() 
+  // Increment ID
+  projectId += 1;
   resetProjectInput();
+  // Class project-link is created/updated in renderProjects() => update the DOM again here
+  projectLinks = document.querySelectorAll('.project-link');
+  // The project link listener needs to be called in order to have access to the updated DOM
+  return projectLinks
 })
 
+projectLinks.forEach(projectLink => 
+  projectLink.addEventListener('click', (e) => {
+    todolistTitleJs.innerText = e.target.innerHTML; 
+    console.log(e.target.dataset.id)   
+  })
+)
+
 function renderProjects() {
+  let idToAssign = '';
   for(let i = 0; i < projects.length; i++){
-    createNewProject(projects[i].name);
+    if(projects[i].id !== undefined){
+      idToAssign = projects[i].id;
+    } else {
+      idToAssign = projectId;
+    }
+    createNewProject(projects[i].name, idToAssign);
   } 
 }
 
-function createNewProject(newProject) {
+function createNewProject(newProject, id) {
   const li = document.createElement('li');
   const a = document.createElement('a');
   a.href = 'javascript:void(0)';
+  a.classList.add('project-link')
   a.innerHTML = newProject;
+  a.dataset.id = id;
   li.appendChild(a);
   displayProjects.appendChild(li);
 }
