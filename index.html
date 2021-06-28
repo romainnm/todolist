@@ -27,7 +27,18 @@
             <ul class="projects projects-js"></ul>
         </div>
         <div id="main">
-            <h2 class=todolist-title-js>Todolist</h2>
+            <div class="display-todolists">
+                <h2 class=project-title-js>Project Title</h2>
+                <form class="add-todolist add-todolist-js">
+                    <input class="add-todolist__input add-todolist__input-js" type="text" placeholder="add a new project" required />
+                    <input type="submit" value="add a todolist" />
+                </form>
+                <ul class="todolists todolists-js"></ul>
+            </div>
+            <div class="display-todolist">
+                <h2 class=todolist-title-js>Todolist Title</h2>
+                <ul class="todolists todolists-js"></ul>
+            </div>
         </div>
     </div>
 </body>
