@@ -4,24 +4,28 @@ import '../dist/css/styles.css'
 const addProject = document.querySelector('.add-project-js');
 const addProjectInput = document.querySelector('.add-project__input-js');
 const displayProjects = document.querySelector('.projects-js');
+const projectTitleJs = document.querySelector('.project-title-js');
+const addTodolist = document.querySelector('.add-todolist-js');
+const addTodolistInput = document.querySelector('.add-todolist__input-js');
 const todolistTitleJs = document.querySelector('.todolist-title-js');
+const displayTodolists = document.querySelector('.todolists-js');
 
 /* Storage for all projects / todolists */
 let projectId = 2;
+let todolistId = 0;
 
 const projects = [
   {
     name: 'Groceries',
-    id: 0,
+    id: 'project-'+0,
     todolists: [],
   }, 
   {
     name: 'Places to visit',
-    id: 1,
+    id: 'project-'+1,
     todolists: [],
   }
 ];
-const todolists = [];
 
 /*
 */
@@ -59,7 +63,7 @@ addProject.addEventListener('submit', (e) => {
   /* Clean the display before re-rendering */
   resetProjectsDisplay();
   /* On Submit, create a new project*/
-  const newProject = project(addProjectInput.value, projectId);
+  const newProject = project(addProjectInput.value, 'project-'+projectId);
   /* Add & Render projects */
   projects.push(newProject);
   renderProjects() 
@@ -79,7 +83,7 @@ function projectLinksListener(){
     projectLink.addEventListener('click', (e) => { 
       projects.forEach(project => {
         if(project.id == e.target.dataset.id){
-          todolistTitleJs.innerText = project.name;
+          projectTitleJs.innerText = project.name;
         }
       })
     })
@@ -118,3 +122,39 @@ function resetProjectsDisplay() {
     displayProjects.removeChild(displayProjects.lastChild)
   }
 }
+
+// Todolist controller
+function todolistLinksListener() {
+  const todolistLinks = document.querySelectorAll('.todolist-link');
+  todolistLinks.forEach(todolistLink => 
+    todolistLink.addEventListener('click', (e) => {
+      console.log('hello')
+      for(let i=0; i < projects.length; i++){
+        for(let y=0; y < projects[i].todolists.length; y++) {
+          if(e.target.dataset.id == projects[i].todolists[y].id) {
+            todolistTitleJs.innerHTML = projects[i].todolists[y].name
+          }
+        }
+      }
+    })
+  )
+}
+
+
+addTodolist.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  a.href = 'javascript:void(0)';
+  a.classList.add('todolist-link')
+  a.innerHTML = addTodolistInput.value;
+  a.dataset.id = 'todolist-'+todolistId;
+  li.appendChild(a);
+  displayTodolists.appendChild(li);
+  const newProject = todolist(addTodolistInput.value, 'todolist-'+todolistId);
+  projects.forEach(project => {
+    project.todolists.push(newProject);
+  })
+  todolistLinksListener()
+})
+
