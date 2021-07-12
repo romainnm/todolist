@@ -75,6 +75,11 @@ h2 {
     display: none;
 }
 
-/* .display-todolist{
+.display-todolist{
     display: none;
-} */
+}
+
+.add-task-form{
+    display: none;
+    flex-direction: column;
+}

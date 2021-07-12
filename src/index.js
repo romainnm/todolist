@@ -11,13 +11,21 @@ const todolistTitleJs = document.querySelector('.todolist-title-js');
 const todolistsJs = document.querySelector('.todolists-js');
 const displayTodolists = document.querySelector('.display-todolists-js');
 const displayTodolist = document.querySelector('.display-todolist-js');
-const addTaskJs = document.querySelector('.add-task-js');
+const addTaskFormJs = document.querySelector('.add-task-form-js');
+const addNewTaskJs = document.querySelector('.add-new-task-js')
+const taskNameInput = document.querySelector('.task-name-input-js');
+const taskDescriptionInput = document.querySelector('.task-description-input-js');
+const taskDueDateInput = document.querySelector('.task-due-date-input-js');
+const taskPriorityInput = document.querySelector('.task-priority-input-js');
+const tasklistsJs = document.querySelector('.tasklists-js')
+let todolistLinks = document.querySelectorAll('.todolist-link');
 // DOM elements End ================================================== //
 
 // Variables & Objects =============================================== //
 /* IDs variable */
 let projectId = 2;
 let todolistId = 0;
+let currentTodolist = '';
 /* Projects Object */
 const projects = [
   {
@@ -37,20 +45,21 @@ const projects = [
 /* Project Factory: construct new projects */
 const project = (name, id) => {
   const todolists = [];
-  const editProject = () => {}
-  const deleteProject = () => {}
-  return {name, id, todolists, editProject, deleteProject}
+  const editProject = () => {};
+  const deleteProject = () => {};
+  return {name, id, todolists, editProject, deleteProject};
 } 
 /* Todolist Factory: construct a new todolist */
 const todolist = (name, id) => {
-  const editTodolist = () => {}
-  const deleteTodolist = () => {}
-  return {name, id, editTodolist, deleteTodolist}
+  const tasks = [];
+  const editTodolist = () => {};
+  const deleteTodolist = () => {};
+  return {name, id, tasks, editTodolist, deleteTodolist};
 }
 /* Todolist Task Factory: construct a new todolist task */
 const todolistTask = (name, description, dueDate, priority) => {
-  const editTodolistTask = () => {}
-  const deleteTodolistTask = () => {}
+  const editTodolistTask = () => {};
+  const deleteTodolistTask = () => {};
   return {name, description, dueDate, priority, editTodolistTask, deleteTodolistTask}
 }
 // CONSTRUCTORS End ============================================ //
@@ -106,6 +115,7 @@ function projectLinksListener(){
         resetTodolistsRender(project.id, e.target.dataset.id);
         displayProject(project.name, project.id, e.target.dataset.id);
         renderProjectTodolists(project.name, project.todolists);
+        todolistLinksListener();
       })
     })
   )
@@ -118,7 +128,6 @@ function displayProject(projectName ,projectId, projectLinkId){
   }
 }
 function renderProjectTodolists(projectName, projectTodolists) {
-  let idToAssign;
   // Render todolists belonging to the project
   if(projectTitleJs.innerText == projectName){
     for(let i=0; i< projectTodolists.length; i++){
@@ -147,7 +156,6 @@ function resetTodolistsRender(projectId, projectLinkId){
 
 
 /* Todolists section controllers ==========================================*/
-let todolistLinks = document.querySelectorAll('.todolist-link');
 addTodolist.addEventListener('submit', (e)=>{
   e.preventDefault();
   resetTodolistsRender();
@@ -172,10 +180,14 @@ function todolistLinksListener() {
         for(let y=0; y<projects[i].todolists.length; y++){
           if(e.target.dataset.id == projects[i].todolists[y].id) {
             todolistTitleJs.innerHTML = projects[i].todolists[y].name;
+            //currentProject = projects[i];
+            //console.log(currentProject);
+            currentTodolist = projects[i].todolists[y];
+            console.log(currentTodolist);
           }
         }
       }
-      //hideShowTodolistsInputs()
+      hideShowTodolistsInputs()
     })
   )
 } 
@@ -183,7 +195,6 @@ function todolistLinksListener() {
 function createNewTodolist(newTodolistName, newTodolistId, projectTodolists) {
   const newTodolist = todolist(newTodolistName, newTodolistId);
   projectTodolists.push(newTodolist)
-  console.log(projectTodolists)
 }
 function resetTodolistInput(){
   addTodolistInput.value = '';
@@ -192,4 +203,43 @@ function hideShowTodolistsInputs(){
   displayTodolists.style.display = 'none';
   displayTodolist.style.display = 'block';
 } 
+/* Todolists section end ==========================================*/
+
+/* Tasks section controllers ==========================================*/
+  addNewTaskJs.addEventListener('click', ()=>{
+    addTaskFormJs.style.display = "flex";
+    addNewTaskJs.style.display = "none";
+  })
+
+  addTaskFormJs.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    resetTasklistDisplay();
+    const newTask = todolistTask(taskNameInput.value, taskDescriptionInput.value, taskDueDateInput.value, taskPriorityInput.value);
+    currentTodolist.tasks.push(newTask);
+    resetTaskInputs();
+    console.log(currentTodolist.tasks);
+    addTaskFormJs.style.display = "none";
+    addNewTaskJs.style.display = "block";
+    renderTasklist(currentTodolist.tasks);
+  })
+
+  function resetTaskInputs(){
+    taskNameInput.value = '';
+    taskDescriptionInput.value = ''; 
+    taskDueDateInput.value = '';
+    taskPriorityInput.value = '';
+  }
+ function renderTasklist(taskList) {
+    taskList.map(task => {
+      const li = document.createElement('li');
+      li.innerHTML = `${task.name} ${task.description}  ${task.dueDate} ${task.priority}`;
+      tasklistsJs.appendChild(li);
+    })
+  }
+  function resetTasklistDisplay(){
+    while (tasklistsJs.firstChild) {
+      tasklistsJs.removeChild(tasklistsJs.lastChild)
+    }
+  }
+/* Tasks section end ==========================================*/
 

@@ -37,11 +37,15 @@
             </div>
             <div class="display-todolist display-todolist-js">
                 <h2 class=todolist-title-js>temp todolist title</h2>
-                <form class="add-task add-task-js">
-                    <input type="text"/>
+                <button class="add-new-task add-new-task-js">Add a new task</button>
+                <form class="add-task-form add-task-form-js">
+                    <input type="text" class="task-name-input task-name-input-js" placeholder="Enter a new task" required/>
+                    <textarea placeholder="Enter a description" class="task-description-input task-description-input-js" required></textarea>
+                    <input type="text" placeholder="Due date" class="task-due-date-input task-due-date-input-js" required/>
+                    <input type="text" placeholder="Priority" class="task-priority-input task-priority-input-js" required/>
                     <input type="submit" value="submit" />
                 </form>
-                <ul class="todolists todolists-js"></ul>
+                <ul class="tasklists tasklists-js"></ul>
             </div>
         </div>
     </div>
