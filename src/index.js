@@ -25,6 +25,7 @@ let todolistLinks = document.querySelectorAll('.todolist-link');
 /* IDs variable */
 let projectId = 2;
 let todolistId = 0;
+let currentProject = '';
 let currentTodolist = '';
 /* Projects Object */
 const projects = [
@@ -116,7 +117,10 @@ function projectLinksListener(){
         displayProject(project.name, project.id, e.target.dataset.id);
         renderProjectTodolists(project.name, project.todolists);
         todolistLinksListener();
+        resetTasklistDisplay();
       })
+      todolistTitleJs.style.display = "none";
+      addNewTaskJs.style.display = "none";
     })
   )
 }
@@ -170,6 +174,10 @@ addTodolist.addEventListener('submit', (e)=>{
   resetTodolistInput();
   todolistLinksListener();
   displayTodolists.style.display = 'block';
+  displayTodolist.style.display = 'none';
+  //-------------------------
+  todolistTitleJs.style.display = "block";
+  addNewTaskJs.style.display = "block";
 })
 
 function todolistLinksListener() {
@@ -180,14 +188,15 @@ function todolistLinksListener() {
         for(let y=0; y<projects[i].todolists.length; y++){
           if(e.target.dataset.id == projects[i].todolists[y].id) {
             todolistTitleJs.innerHTML = projects[i].todolists[y].name;
-            //currentProject = projects[i];
-            //console.log(currentProject);
             currentTodolist = projects[i].todolists[y];
-            console.log(currentTodolist);
           }
         }
       }
-      hideShowTodolistsInputs()
+      hideShowTodolistsInputs();
+      resetTasklistDisplay();
+      renderTasklist(currentTodolist.tasks);
+      todolistTitleJs.style.display = "block";
+      addNewTaskJs.style.display = "block";
     })
   )
 } 
@@ -206,9 +215,8 @@ function hideShowTodolistsInputs(){
 /* Todolists section end ==========================================*/
 
 /* Tasks section controllers ==========================================*/
-  addNewTaskJs.addEventListener('click', ()=>{
-    addTaskFormJs.style.display = "flex";
-    addNewTaskJs.style.display = "none";
+  addNewTaskJs.addEventListener('click', (e)=>{
+    toggleShowTaskForm();
   })
 
   addTaskFormJs.addEventListener('submit', (e)=>{
@@ -217,9 +225,7 @@ function hideShowTodolistsInputs(){
     const newTask = todolistTask(taskNameInput.value, taskDescriptionInput.value, taskDueDateInput.value, taskPriorityInput.value);
     currentTodolist.tasks.push(newTask);
     resetTaskInputs();
-    console.log(currentTodolist.tasks);
-    addTaskFormJs.style.display = "none";
-    addNewTaskJs.style.display = "block";
+    toggleShowTaskForm();
     renderTasklist(currentTodolist.tasks);
   })
 
@@ -239,6 +245,15 @@ function hideShowTodolistsInputs(){
   function resetTasklistDisplay(){
     while (tasklistsJs.firstChild) {
       tasklistsJs.removeChild(tasklistsJs.lastChild)
+    }
+  }
+  function toggleShowTaskForm(){
+    if(addNewTaskJs.style.display == "none"){
+      addTaskFormJs.style.display = "none";
+      addNewTaskJs.style.display = "block";
+    } else{
+      addTaskFormJs.style.display = "flex";
+      addNewTaskJs.style.display = "none";
     }
   }
 /* Tasks section end ==========================================*/
