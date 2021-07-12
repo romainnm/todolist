@@ -65,9 +65,9 @@ addProject.addEventListener('submit', (e) => {
   renderProjects() 
   resetProjectInput();
   // Listens to the list of projects/links generated
-  projectLinksListener()
+  projectLinksListener();
 })
-projectLinksListener()
+projectLinksListener();
 /* PROJECTS functions --------------------*/
 function renderProjects() {
   for(let i = 0; i < projects.length; i++){
@@ -103,45 +103,45 @@ function projectLinksListener(){
   projectLinks.forEach(projectLink => 
     projectLink.addEventListener('click', (e) => { 
       projects.forEach(project => {
-        if(e.target.innerText !== projectTitleJs.innerText){
-          // We want to make sure that only the todolist belonging to a project are displayed
-          resetTodolistsDisplay();
-        } else if(e.target.innerText == projectTitleJs.innerText){
-          // Cancel behavior if the same link is clicked
-          return
-        }
-        displayProject(project.id, project.name, e.target.dataset.id);
+        resetTodolistsRender(project.id, e.target.dataset.id);
+        displayProject(project.name, project.id, e.target.dataset.id);
         renderProjectTodolists(project.name, project.todolists);
       })
     })
   )
 }
-function displayProject(projectId, projectName, projectLinkId){
+function displayProject(projectName ,projectId, projectLinkId){
   // Display the appropriate Project by identifying Ids
   if(projectId == projectLinkId){
     projectTitleJs.innerText = projectName;
     displayTodolists.style.display = 'block';
   }
 }
-function renderProjectTodolists(projectName, projectTodolist) {
+function renderProjectTodolists(projectName, projectTodolists) {
+  let idToAssign;
   // Render todolists belonging to the project
   if(projectTitleJs.innerText == projectName){
-    for(let i=0; i< projectTodolist.length; i++){
+    for(let i=0; i< projectTodolists.length; i++){
       const li = document.createElement('li');
       const a = document.createElement('a');
       a.href = 'javascript:void(0)';
       a.classList.add('todolist-link')
-      a.dataset.id = 'todolist-'+todolistId;
-      a.innerHTML = projectTodolist[i].name
+      if(a.dataset.id == undefined){
+        a.dataset.id = projectTodolists[i].id;
+      }
+      a.innerHTML = projectTodolists[i].name
       li.appendChild(a);
       todolistsJs.appendChild(li);
+      
     } 
   }
 }
-function resetTodolistsDisplay(){
-  while (todolistsJs.firstChild) {
-    todolistsJs.removeChild(todolistsJs.lastChild)
-  }
+function resetTodolistsRender(projectId, projectLinkId){
+  if(projectLinkId == projectId){
+    while (todolistsJs.firstChild) {
+      todolistsJs.removeChild(todolistsJs.lastChild)
+    }
+  } 
 }
 /* PROJECTS section end ==========================================*/
 
@@ -150,45 +150,46 @@ function resetTodolistsDisplay(){
 let todolistLinks = document.querySelectorAll('.todolist-link');
 addTodolist.addEventListener('submit', (e)=>{
   e.preventDefault();
-  //Create links for the todolists
-  //Render the todolist
-  resetTodolistsDisplay();
-  const newTodolist = todolist(addTodolistInput.value, 'todolist-'+todolistId);
-  addTodolistInput.value = '';
-  todolistId += 1;
-  console.log(projects)
-  // Add new todolist to a project
+  resetTodolistsRender();
   projects.forEach(project => {
-    //Add todolist to the project that is selected
+    //Add todolist to the selected project
     if(projectTitleJs.innerText == project.name){
-      project.todolists.push(newTodolist)
-      for(let i=0; i< project.todolists.length; i++){
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = 'javascript:void(0)';
-        a.classList.add('todolist-link')
-        a.dataset.id = 'todolist-'+todolistId;
-        a.innerHTML = project.todolists[i].name
-        li.appendChild(a);
-        todolistsJs.appendChild(li);
-      }
+      createNewTodolist(addTodolistInput.value, 'todolist-'+todolistId, project.todolists);
+      todolistId += 1;
+      renderProjectTodolists(project.name, project.todolists);
     } 
   })
-  //console.log(projects[0].todolist[0].name);
-  todolistLinks = document.querySelectorAll('.todolist-link');
+  resetTodolistInput();
   todolistLinksListener();
-  displayTodolist.style.display = 'block';
+  displayTodolists.style.display = 'block';
 })
+
 function todolistLinksListener() {
+  todolistLinks = document.querySelectorAll('.todolist-link');
   todolistLinks.forEach(todolistLink => 
     todolistLink.addEventListener('click', (e) => {
-      for(let i=0; i < projects.length; i++){
-        for(let y=0; y < projects[i].todolists.length; y++) {
+      for(let i=0; i<projects.length; i++){
+        for(let y=0; y<projects[i].todolists.length; y++){
           if(e.target.dataset.id == projects[i].todolists[y].id) {
             todolistTitleJs.innerHTML = projects[i].todolists[y].name;
           }
         }
       }
+      //hideShowTodolistsInputs()
     })
   )
 } 
+
+function createNewTodolist(newTodolistName, newTodolistId, projectTodolists) {
+  const newTodolist = todolist(newTodolistName, newTodolistId);
+  projectTodolists.push(newTodolist)
+  console.log(projectTodolists)
+}
+function resetTodolistInput(){
+  addTodolistInput.value = '';
+}
+function hideShowTodolistsInputs(){
+  displayTodolists.style.display = 'none';
+  displayTodolist.style.display = 'block';
+} 
+
