@@ -38,7 +38,7 @@
             </div>
             <div class="display-todolist display-todolist-js">
                 <h2 class=todolist-title-js></h2>
-                <button class="add-new-task add-new-task-js">Add a new task</button>
+                <button class="add-new-task add-new-task-js">+ Add a new task</button>
                 <form class="add-task-form add-task-form-js">
                     <input type="text" class="task-name-input task-name-input-js" placeholder="Enter a new task" required/>
                     <textarea placeholder="Enter a description" class="task-description-input task-description-input-js" required></textarea>
@@ -46,9 +46,24 @@
                     <input type="text" placeholder="Priority" class="task-priority-input task-priority-input-js" required/>
                     <input type="submit" value="submit" />
                 </form>
-                <ul class="tasklists tasklists-js"></ul>
+                <!-- <ul class="tasklists tasklists-js"></ul> -->
+
+                <table class="tasklists tasklists-js">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Description</th>
+                            <th>Due date</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tasklists__tbody-js">
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+    
 </body>
 </html>
