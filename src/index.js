@@ -78,6 +78,7 @@ addProject.addEventListener('submit', (e) => {
   projectLinksListener();
 })
 projectLinksListener();
+
 /* PROJECTS functions --------------------*/
 function renderProjects() {
   for(let i = 0; i < projects.length; i++){
@@ -110,19 +111,23 @@ function resetProjectInput() {
 }
 function projectLinksListener(){
   projectLinks = document.querySelectorAll('.project-link');
-  projectLinks.forEach(projectLink => 
-    projectLink.addEventListener('click', (e) => { 
+  projectLinks.forEach(projectLink => {
+    projectLink.addEventListener('click', (e) => {
+      removeActiveProjectClass();
       projects.forEach(project => {
         resetTodolistsRender(project.id, e.target.dataset.id);
         displayProject(project.name, project.id, e.target.dataset.id);
         renderProjectTodolists(project.name, project.todolists);
         todolistLinksListener();
         resetTasklistDisplay();
+        if(e.target.dataset.id == project.id){
+          e.target.classList.add('active-project')
+        } 
       })
       todolistTitleJs.style.display = "none";
       addNewTaskJs.style.display = "none";
     })
-  )
+  })
 }
 function displayProject(projectName ,projectId, projectLinkId){
   // Display the appropriate Project by identifying Ids
@@ -155,6 +160,13 @@ function resetTodolistsRender(projectId, projectLinkId){
       todolistsJs.removeChild(todolistsJs.lastChild)
     }
   } 
+}
+function removeActiveProjectClass(){
+  projectLinks.forEach(projectLink => {
+    if(projectLink.classList.contains('active-project')){
+      projectLink.classList.remove("active-project")
+    } 
+  });
 }
 /* PROJECTS section end ==========================================*/
 
@@ -192,6 +204,7 @@ function todolistLinksListener() {
           }
         }
       }
+      //console.log(currentProject);
       hideShowTodolistsInputs();
       resetTasklistDisplay();
       renderTasklist(currentTodolist.tasks);
