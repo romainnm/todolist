@@ -17,7 +17,8 @@ const taskNameInput = document.querySelector('.task-name-input-js');
 const taskDescriptionInput = document.querySelector('.task-description-input-js');
 const taskDueDateInput = document.querySelector('.task-due-date-input-js');
 const taskPriorityInput = document.querySelector('.task-priority-input-js');
-const tasklistsJs = document.querySelector('.tasklists-js')
+const tasklistsJs = document.querySelector('.tasklists-js');
+const taskListsTbodyJs = document.querySelector('.tasklists__tbody-js');
 let todolistLinks = document.querySelectorAll('.todolist-link');
 // DOM elements End ================================================== //
 
@@ -251,14 +252,18 @@ function hideShowTodolistsInputs(){
   }
  function renderTasklist(taskList) {
     taskList.map(task => {
-      const li = document.createElement('li');
-      li.innerHTML = `${task.name} ${task.description}  ${task.dueDate} ${task.priority}`;
-      tasklistsJs.appendChild(li);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${task.name}</td> 
+        <td>${task.description}</td>  
+        <td>${task.dueDate}</td> 
+        <td>${task.priority}</td>`;
+      taskListsTbodyJs.appendChild(tr);
     })
   }
   function resetTasklistDisplay(){
-    while (tasklistsJs.firstChild) {
-      tasklistsJs.removeChild(tasklistsJs.lastChild)
+    while (taskListsTbodyJs.firstChild) {
+      taskListsTbodyJs.removeChild(taskListsTbodyJs.lastChild)
     }
   }
   function toggleShowTaskForm(){
