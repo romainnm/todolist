@@ -41,6 +41,10 @@ nav {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
 }
+#main h2{
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
 
 .logo {
     font-family: 'Bebas Neue', cursive;
@@ -94,11 +98,11 @@ h2 {
     color: rgba(56, 120, 192, 0.6);
 }
 
-.add-project{
+.add-project, .add-todolist{
     display: flex;
 }
 
-.projects{
+.projects, .todolists{
     margin-top: 15px;
     list-style: none;
 }
@@ -106,11 +110,11 @@ h2 {
     padding-bottom: 4px;
 }
 
-.add-project input[type="submit"]{
+.add-project input[type="submit"], .add-todolist input[type="submit"]{
     padding: 0 8px;
     color: white;
     font-weight: bolder;
-    background-color: rgb(48, 48, 48);
+    background-color: rgba(56, 120, 192, 0.8);
     text-decoration: none;
     border: none;
     cursor: pointer;
@@ -122,4 +126,33 @@ h2 {
 .active-project{
     font-weight: bolder;
     color: rgb(56, 119, 192);
+}
+.add-todolist__input{
+    width: 50%;
+    padding-left: 4px;
+}
+.todolists{
+    display: flex;
+}
+.todolists li{
+    margin-right: 5px;
+    background-color: rgba(56, 120, 192, 0.137);;
+}
+.todolists li:hover{
+    background-color: rgba(56, 120, 192, 0.8);;
+}
+.todolists li a{
+    display: inline-block;
+    padding: 50px 70px; 
+    text-decoration: none;
+    color:  white;
+}
+
+.add-new-task{
+    padding: 4px 15px;
+    color: white;
+    background-color: rgba(56, 120, 192, 0.8);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
