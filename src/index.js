@@ -257,7 +257,8 @@ function hideShowTodolistsInputs(){
         <td>${task.name}</td> 
         <td>${task.description}</td>  
         <td>${task.dueDate}</td> 
-        <td>${task.priority}</td>`;
+        <td>${task.priority}</td>
+        <td><button class="delete-task delete-task-js">delete</button></td>`;
       taskListsTbodyJs.appendChild(tr);
     })
   }
