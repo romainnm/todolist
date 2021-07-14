@@ -163,6 +163,26 @@ h2 {
     background-color: rgba(56, 120, 192, 0.5);  
 }
 .tasklists, tr, th, td{
-    border: 1px solid #000;
     border-collapse: collapse;
+}
+.tasklists th{
+    border-bottom: 1px solid #000;
+}
+table{
+    margin-top: 20px;
+}
+th, td{
+    padding-right: 50px;
+}
+th{
+    text-align: left;
+    font-size: 0.8em;
+}
+td{
+    font-weight: normal;
+    font-size: 0.75em;
+}
+.delete-task{
+    font-size: 0.8em;
+    padding: 0 2px;
 }
