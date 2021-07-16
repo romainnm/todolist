@@ -20,12 +20,14 @@ const taskPriorityInput = document.querySelector('.task-priority-input-js');
 const tasklistsJs = document.querySelector('.tasklists-js');
 const taskListsTbodyJs = document.querySelector('.tasklists__tbody-js');
 let todolistLinks = document.querySelectorAll('.todolist-link');
+let deleteTasksJs = document.querySelectorAll('.delete-task-js');
 // DOM elements End ================================================== //
 
 // Variables & Objects =============================================== //
 /* IDs variable */
 let projectId = 2;
 let todolistId = 0;
+let taskId = 0;
 let currentProject = '';
 let currentTodolist = '';
 /* Projects Object */
@@ -59,10 +61,10 @@ const todolist = (name, id) => {
   return {name, id, tasks, editTodolist, deleteTodolist};
 }
 /* Todolist Task Factory: construct a new todolist task */
-const todolistTask = (name, description, dueDate, priority) => {
+const todolistTask = (name, description, dueDate, priority, id) => {
   const editTodolistTask = () => {};
   const deleteTodolistTask = () => {};
-  return {name, description, dueDate, priority, editTodolistTask, deleteTodolistTask}
+  return {name, description, dueDate, priority, id, editTodolistTask, deleteTodolistTask}
 }
 // CONSTRUCTORS End ============================================ //
 
@@ -192,6 +194,7 @@ addTodolist.addEventListener('submit', (e)=>{
   //-------------------------
   todolistTitleJs.style.display = "block";
   addNewTaskJs.style.display = "block";
+  deleteTasksJs = document.querySelectorAll('.delete-task-js');
 })
 
 function todolistLinksListener() {
@@ -206,7 +209,6 @@ function todolistLinksListener() {
           }
         }
       }
-      //console.log(currentProject);
       hideShowTodolistsInputs();
       resetTasklistDisplay();
       renderTasklist(currentTodolist.tasks);
@@ -237,12 +239,28 @@ function hideShowTodolistsInputs(){
   addTaskFormJs.addEventListener('submit', (e)=>{
     e.preventDefault();
     resetTasklistDisplay();
-    const newTask = todolistTask(taskNameInput.value, taskDescriptionInput.value, taskDueDateInput.value, taskPriorityInput.value);
+    const newTask = todolistTask(taskNameInput.value, taskDescriptionInput.value, taskDueDateInput.value, taskPriorityInput.value, taskId);
     currentTodolist.tasks.push(newTask);
+    taskId += 1;
     resetTaskInputs();
     toggleShowTaskForm();
     renderTasklist(currentTodolist.tasks);
+    deleteTasksJs = document.querySelectorAll('.delete-task-js');
+
   })
+
+  tasklistsJs.addEventListener('click', (e)=>{
+    e.target.parentElement.parentElement.remove();
+    // delete object from array
+    currentTodolist.tasks.forEach(task => {
+      if(task.id == e.target.parentElement.parentElement.dataset.id){
+        const index = currentTodolist.tasks.indexOf(task)
+        currentTodolist.tasks.splice(index, 1);
+      }
+      
+    }) 
+  })
+
 
   function resetTaskInputs(){
     taskNameInput.value = '';
@@ -253,6 +271,7 @@ function hideShowTodolistsInputs(){
  function renderTasklist(taskList) {
     taskList.map(task => {
       const tr = document.createElement('tr');
+      tr.dataset.id = task.id;
       tr.innerHTML = `
         <td>${task.name}</td> 
         <td>${task.description}</td>  
@@ -276,5 +295,6 @@ function hideShowTodolistsInputs(){
       addNewTaskJs.style.display = "none";
     }
   }
+  
 /* Tasks section end ==========================================*/
 
