@@ -1,63 +1,63 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .grid {
-    display: grid;
-    height: 100vh;
-    grid-template-columns: 260px auto;
-    grid-template-rows: 50px auto;
-    grid-template-areas:
-        "nav nav"
-        "sidebar main"
-        "sidebar main"
-        "sidebar main";
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 260px auto;
+  grid-template-rows: 50px auto;
+  grid-template-areas:
+    "nav nav"
+    "sidebar main"
+    "sidebar main"
+    "sidebar main";
 }
 
 nav {
-    background-color: rgb(0, 0, 0);
-    grid-area: nav;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  background-color: rgb(0, 0, 0);
+  grid-area: nav;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #sidebar {
-    background-color: #fafafa;
-    border-right: 1px solid #e3e3e3;
-    grid-area: sidebar;
-    padding: 20px 0 0 20px;
-    font-family: 'Roboto', sans-serif;
-    font-size: .85em;
+  background-color: #fafafa;
+  border-right: 1px solid #e3e3e3;
+  grid-area: sidebar;
+  padding: 20px 0 0 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.85em;
 }
-#sidebar h2{
-    margin-bottom: 10px;
+#sidebar h2 {
+  margin-bottom: 10px;
 }
 #main {
-    background-color: rgb(255, 255, 255);
-    grid-area: main;
-    padding: 30px 0 0 30px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
+  background-color: rgb(255, 255, 255);
+  grid-area: main;
+  padding: 30px 0 0 30px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
 }
-#main h2{
-    font-size: 1.4em;
-    margin-bottom: 10px;
+#main h2 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
 }
 
 .logo {
-    font-family: 'Bebas Neue', cursive;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 0 0 20px;
+  font-family: "Bebas Neue", cursive;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 20px;
 }
 
 .logo a {
-    font-size: 1em;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
+  font-size: 1em;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
 }
 
 /* .search-bar {
@@ -68,121 +68,153 @@ nav {
 } */
 
 .fa-cog {
-    color: white;
-    padding: 0 20px 0 0;
+  color: white;
+  padding: 0 20px 0 0;
 }
 
 h2 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
 }
 
 .display-todolists {
-    display: none;
+  display: none;
 }
 
-.display-todolist{
-    display: none;
+.display-todolist {
+  display: none;
 }
 
-.add-task-form{
-    display: none;
-    flex-direction: column;
-}
- 
-.project-link{
-    text-decoration: none;
-    color: rgb(29, 29, 29);
-}
-.project-link:hover{
-    color: rgba(56, 120, 192, 0.6);
+.add-task-form {
+  display: none;
+  flex-direction: column;
 }
 
-.add-project, .add-todolist{
-    display: flex;
+.project-link {
+  text-decoration: none;
+  color: rgb(29, 29, 29);
+}
+.project-link:hover {
+  color: rgba(56, 120, 192, 0.6);
 }
 
-.projects, .todolists{
-    margin-top: 15px;
-    list-style: none;
-}
-.projects li{
-    padding-bottom: 4px;
+.add-project,
+.add-todolist {
+  display: flex;
 }
 
-.add-project input[type="submit"], .add-todolist input[type="submit"]{
-    padding: 0 8px;
-    color: white;
-    font-weight: bolder;
-    background-color: rgba(56, 120, 192, 0.8);
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
+.projects,
+.todolists {
+  margin-top: 15px;
+  list-style: none;
 }
-.add-project__input{
-    width: 76%;
-    padding-left: 4px;
-}
-.active-project{
-    font-weight: bolder;
-    color: rgb(56, 119, 192);
-}
-.add-todolist__input{
-    width: 50%;
-    padding-left: 4px;
-}
-.todolists{
-    display: flex;
-}
-.todolists li{
-    margin-right: 5px;
-    background-color: rgba(56, 120, 192, 0.137);;
-}
-.todolists li:hover{
-    background-color: rgba(56, 120, 192, 0.8);;
-}
-.todolists li a{
-    display: inline-block;
-    padding: 50px 70px; 
-    text-decoration: none;
-    color:  white;
+.projects li {
+  padding-bottom: 4px;
 }
 
-.add-new-task{
-    padding: 4px 12px;
-    color: white;
-    background-color: rgba(56, 120, 192, 0.8);
-    text-decoration: none;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 0.7em;
+.add-project input[type="submit"],
+.add-todolist input[type="submit"] {
+  padding: 0 8px;
+  color: white;
+  font-weight: bolder;
+  background-color: rgba(56, 120, 192, 0.8);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.add-project__input {
+  width: 76%;
+  padding-left: 4px;
+}
+.active-project {
+  font-weight: bolder;
+  color: rgb(56, 119, 192);
+}
+.add-todolist__input {
+  width: 50%;
+  padding-left: 4px;
+}
+.todolists {
+  display: flex;
+  flex-wrap: wrap;
+}
+.todolists li {
+  margin-right: 5px;
+  background-color: rgba(56, 120, 192, 0.137);
+  width: 200px;
+  height: 130px;
+  margin-bottom: 5px;
+}
+.todolists li:hover {
+  background-color: rgba(56, 120, 192, 0.8);
+}
+.todolists li a {
+  display: inline-block;
+  padding: 50px 70px;
+  text-decoration: none;
+  color: white;
 }
 
-.add-new-task:hover{
-    background-color: rgba(56, 120, 192, 0.5);  
+.add-new-task {
+  padding: 4px 12px;
+  color: white;
+  background-color: rgba(56, 120, 192, 0.8);
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.7em;
 }
-.tasklists, tr, th, td{
-    border-collapse: collapse;
+
+.add-new-task:hover {
+  background-color: rgba(56, 120, 192, 0.5);
 }
-.tasklists th{
-    border-bottom: 1px solid #000;
+.tasklists {
+  display: none;
 }
-table{
-    margin-top: 20px;
+.tasklists,
+tr,
+th,
+td {
+  border-collapse: collapse;
 }
-th, td{
-    padding-right: 50px;
+.tasklists th {
+  border-bottom: 1px solid #000;
 }
-th{
-    text-align: left;
-    font-size: 0.8em;
+table {
+  margin-top: 20px;
 }
-td{
-    font-weight: normal;
-    font-size: 0.75em;
+th,
+td {
+  padding-right: 50px;
 }
-.delete-task{
-    font-size: 0.8em;
-    padding: 0 2px;
+th {
+  text-align: left;
+  font-size: 0.8em;
+}
+td {
+  font-weight: normal;
+  font-size: 0.75em;
+  padding: 5px 0;
+}
+.delete-task,
+.edit-task {
+  color: rgb(56, 120, 192);
+  background: none;
+  border: none;
+  padding: 0 2px;
+}
+.delete-task:hover,
+.edit-task:hover {
+  color: rgb(163, 163, 163);
+}
+
+.add-task-form {
+  width: 300px;
+}
+
+.add-task-form input,
+textarea {
+  padding: 2px 0;
+  margin: 5px 0;
 }
