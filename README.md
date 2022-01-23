@@ -1,4 +1,4 @@
-# Restaurant page
+# Todolist App
 
 This project is part of the JavaScript Course made by [The Odin Project](www.theodinproject.com) <img src="https://www.theodinproject.com/assets/odin-logo-bd86cf893a3de1f1daceabc1377f58669776616a91ab70c601fd5c16a4686468.svg" width="15"> 
 
@@ -27,6 +27,7 @@ This project is part of the JavaScript Course made by [The Odin Project](www.the
 ## How this project can be optimized
 - Add ability to edit tasks
 - Add functions to delete projects/todolists
+- Add a "breadcrumb" to help the user with the navigation
 
 ## :cactus: About Me :cactus:
 
