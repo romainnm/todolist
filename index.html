@@ -1,68 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="main.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <title>Todolist</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="grid">
-        <nav>
-            <h1 class="logo"><a href="#">Get it done .</a></h1>
-            <!-- <input class="search-bar" type="text" /> -->
-            <i class="fas fa-cog"></i>
-        </nav>
-        <div id="sidebar">
-            <h2>Projects list</h2>
-            <form class="add-project add-project-js">
-                <input class="add-project__input add-project__input-js" type="text" placeholder="Add a new project" required />
-                <input type="submit" value="+" />
-            </form>
-            <ul class="projects projects-js"></ul>
-        </div>
-        <div id="main">
-            <div class="display-todolists display-todolists-js">
-                <h2 class=project-title-js>Project Title</h2>
-                <form class="add-todolist add-todolist-js">
-                    <input class="add-todolist__input add-todolist__input-js" type="text" placeholder="Add a new todolist to the project" required />
-                    <input type="submit" value="+" />
-                </form>
+      <nav>
+        <h1 class="logo"><a href="#">Get it done .</a></h1>
+        <!-- <input class="search-bar" type="text" /> -->
+        <i class="fas fa-cog"></i>
+      </nav>
+      <div id="sidebar">
+        <h2>Projects list</h2>
+        <form class="add-project add-project-js">
+          <input
+            class="add-project__input add-project__input-js"
+            type="text"
+            placeholder="Add a new project"
+            required
+          />
+          <input type="submit" value="+" />
+        </form>
+        <ul class="projects projects-js"></ul>
+      </div>
+      <div id="main">
+        <div class="display-todolists display-todolists-js">
+          <h2 class="project-title-js">Project Title</h2>
+          <form class="add-todolist add-todolist-js">
+            <input
+              class="add-todolist__input add-todolist__input-js"
+              type="text"
+              placeholder="Add a new todolist to the project"
+              required
+            />
+            <input type="submit" value="+" />
+          </form>
 
-                <ul class="todolists todolists-js"></ul>
-            </div>
-            <div class="display-todolist display-todolist-js">
-                <h2 class=todolist-title-js></h2>
-                <button class="add-new-task add-new-task-js">+ Add a new task</button>
-                <form class="add-task-form add-task-form-js">
-                    <input type="text" class="task-name-input task-name-input-js" placeholder="Enter a new task" required/>
-                    <textarea placeholder="Enter a description" class="task-description-input task-description-input-js" required></textarea>
-                    <input type="text" placeholder="Due date" class="task-due-date-input task-due-date-input-js" required/>
-                    <input type="text" placeholder="Priority" class="task-priority-input task-priority-input-js" required/>
-                    <input type="submit" value="submit" />
-                </form>
-                <!-- <ul class="tasklists tasklists-js"></ul> -->
-
-                <table class="tasklists tasklists-js">
-                    <thead>
-                        <tr>
-                            <th>Task</th>
-                            <th>Description</th>
-                            <th>Due date</th>
-                            <th>Priority</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tasklists__tbody-js"></tbody>
-                </table>
-            </div>
+          <ul class="todolists todolists-js"></ul>
         </div>
+        <div class="display-todolist display-todolist-js">
+          <h2 class="todolist-title-js"></h2>
+          <button class="add-new-task add-new-task-js">+ Add a new task</button>
+          <form class="add-task-form add-task-form-js">
+            <input
+              type="text"
+              class="task-name-input task-name-input-js"
+              placeholder="Enter a new task"
+              required
+            />
+            <textarea
+              placeholder="Enter a description"
+              class="task-description-input task-description-input-js"
+              required
+            ></textarea>
+            <input
+              type="text"
+              placeholder="Due date"
+              class="task-due-date-input task-due-date-input-js"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Priority"
+              class="task-priority-input task-priority-input-js"
+              required
+            />
+            <input type="submit" value="submit" />
+          </form>
+          <!-- <ul class="tasklists tasklists-js"></ul> -->
+
+          <table class="tasklists tasklists-js">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Due date</th>
+                <th>Priority</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody class="tasklists__tbody-js"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
